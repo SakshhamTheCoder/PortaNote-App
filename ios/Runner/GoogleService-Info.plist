@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBjkLK0wNySHpYbMwdg9GMx9aviUfaHuMg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>308890526605</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.stg.portanoteApp</string>
+	<key>PROJECT_ID</key>
+	<string>portanote-f6bc1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>portanote-f6bc1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:308890526605:ios:4e3a4de75e6558b29fd3c4</string>
+</dict>
+</plist>

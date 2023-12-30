@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "308890526605",
+    "project_id": "portanote-f6bc1",
+    "storage_bucket": "portanote-f6bc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308890526605:android:3c1b803f4eb728819fd3c4",
+        "android_client_info": {
+          "package_name": "com.example.portanote_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtjk0zstEAgH89rk0JnxD854SjKF45GYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308890526605:android:84c3252f1ebc2a2b9fd3c4",
+        "android_client_info": {
+          "package_name": "com.stg.portanote_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtjk0zstEAgH89rk0JnxD854SjKF45GYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
