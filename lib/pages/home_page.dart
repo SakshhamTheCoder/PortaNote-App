@@ -4,9 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:portanote_app/components/default_scaffold.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portanote_app/pages/create_page.dart';
+import 'package:portanote_app/pages/landing_page.dart';
 import 'package:portanote_app/pages/view_edit_page.dart';
-
-import 'signin_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +18,9 @@ class _HomePageState extends State<HomePage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   void signOut() async {
     await auth.signOut();
+    Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (context) => const LandingPage()), (route) => false);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signed out')));
   }
 
   @override
@@ -34,9 +36,6 @@ class _HomePageState extends State<HomePage> {
                 child: const Text("Yes"),
                 onPressed: () {
                   signOut();
-                  Navigator.pushAndRemoveUntil(
-                      context, MaterialPageRoute(builder: (context) => const SignInPage()), (route) => false);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signed out')));
                 },
               ),
               TextButton(
@@ -70,8 +69,15 @@ class _HomePageState extends State<HomePage> {
               if (snapshot.data!.docs.isEmpty) {
                 return const Expanded(
                   child: Center(
-                      child: Text('No notes found. Create one using the Create Button below',
-                          textAlign: TextAlign.center, style: TextStyle(fontSize: 24))),
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('No notes', style: TextStyle(fontSize: 48)),
+                      Text(
+                        'Create one using the Create Button below',
+                      ),
+                    ],
+                  )),
                 );
               }
               return Expanded(
@@ -105,8 +111,8 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         Text(
                                           snapshot.data?.docs[index]['title'],
-                                          style: const TextStyle(fontSize: 24),
-                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(fontSize: 28),
+                                          // textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                         const SizedBox(height: 8),
@@ -114,15 +120,13 @@ class _HomePageState extends State<HomePage> {
                                           snapshot.data?.docs[index]['content'],
                                           style: const TextStyle(fontSize: 12),
                                           overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.center,
+                                          // textAlign: TextAlign.center,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      DateFormat('dd/MM/yyyy HH:mm:ss')
-                                          .format(snapshot.data!.docs[index]['date'].toDate())
-                                          .toString(),
-                                      style: const TextStyle(fontSize: 12),
+                                      'Created at ${DateFormat('dd/MM/yyyy hh:mm:ss a').format(snapshot.data!.docs[index]['date'].toDate())}',
+                                      style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 229, 229, 229)),
                                       textAlign: TextAlign.center,
                                     ),
                                   ],
@@ -158,7 +162,10 @@ class _HomePageState extends State<HomePage> {
                                     );
                                     showDialog(context: context, builder: (BuildContext context) => alert);
                                   },
-                                  icon: const Icon(Icons.delete),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 20,
+                                  ),
                                 ),
                               )
                             ]),
@@ -176,8 +183,11 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const CreatePage()));
         },
-        label: const Text('Create Note'),
-        icon: const Icon(Icons.create),
+        label: const Text('Create Note', style: TextStyle(fontSize: 18)),
+        icon: const Icon(
+          Icons.add,
+          size: 30,
+        ),
       ),
     );
   }

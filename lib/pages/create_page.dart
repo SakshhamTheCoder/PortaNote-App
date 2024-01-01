@@ -16,41 +16,44 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-            child: Column(
-          children: [
-            Column(
-              children: [
-                TextField(
-                  controller: _titleController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                    labelText: 'Title',
-                    hintText: 'Title',
-                    isDense: true,
-                    contentPadding: const EdgeInsets.all(12),
+      body: Center(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  const Text('Create note', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                      labelText: 'Title',
+                      hintText: 'Title',
+                      isDense: true,
+                      contentPadding: const EdgeInsets.all(12),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  keyboardType: TextInputType.multiline,
-                  minLines: 10,
-                  maxLines: null,
-                  controller: _contentController,
-                  decoration: InputDecoration(
-                    alignLabelWithHint: true,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                    labelText: 'Content',
-                    hintText: 'Content',
-                    contentPadding: const EdgeInsets.all(12),
+                  const SizedBox(height: 16),
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 10,
+                    maxLines: null,
+                    controller: _contentController,
+                    decoration: InputDecoration(
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                      labelText: 'Content',
+                      hintText: 'Content',
+                      contentPadding: const EdgeInsets.all(12),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
-        )),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
       fab: FloatingActionButton.extended(
         onPressed: () {
@@ -68,7 +71,7 @@ class _CreatePageState extends State<CreatePage> {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note created')));
         },
-        label: const Text('Save Note'),
+        label: const Text('Save Note', style: TextStyle(fontSize: 18)),
         icon: const Icon(Icons.save_as),
       ),
     );

@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../components/default_scaffold.dart';
-import 'home_page.dart';
-import 'signup_page.dart';
+import 'package:portanote_app/pages/home_page.dart';
+import 'package:portanote_app/pages/signup_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -22,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
             child: SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        const Text('Sign in to PortaNote', textAlign: TextAlign.center, style: TextStyle(fontSize: 48, height: 0.9)),
+        const Text('Sign in to PortaNote', textAlign: TextAlign.center, style: TextStyle(fontSize: 48, height: 1)),
         const SizedBox(height: 32),
         TextField(
           controller: _emailController,
@@ -86,7 +85,8 @@ class _SignInPageState extends State<SignInPage> {
     );
     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
       Navigator.pop(context);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (context) => const HomePage()), (route) => false);
     }).catchError((e) {
       Navigator.pop(context);
 

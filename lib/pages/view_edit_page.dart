@@ -17,54 +17,57 @@ class _ViewEditPageState extends State<ViewEditPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-            child: Column(
-          children: [
-            StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection(FirebaseAuth.instance.currentUser!.uid.toString())
-                    .doc(widget.noteId)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Center(child: Text('Loading note...'));
-                  }
-                  _titleController.value = TextEditingValue(text: snapshot.data?['title']);
-                  _contentController.value = TextEditingValue(text: snapshot.data?['content']);
+      body: Center(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              const Text('View/Edit note', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 16),
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection(FirebaseAuth.instance.currentUser!.uid.toString())
+                      .doc(widget.noteId)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: Text('Loading note...'));
+                    }
+                    _titleController.value = TextEditingValue(text: snapshot.data?['title']);
+                    _contentController.value = TextEditingValue(text: snapshot.data?['content']);
 
-                  return Column(
-                    children: [
-                      TextField(
-                        controller: _titleController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                          labelText: 'Title',
-                          hintText: 'Title',
-                          isDense: true,
-                          contentPadding: const EdgeInsets.all(12),
+                    return Column(
+                      children: [
+                        TextField(
+                          controller: _titleController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                            labelText: 'Title',
+                            hintText: 'Title',
+                            isDense: true,
+                            contentPadding: const EdgeInsets.all(12),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        keyboardType: TextInputType.multiline,
-                        minLines: 10,
-                        maxLines: null,
-                        controller: _contentController,
-                        decoration: InputDecoration(
-                          alignLabelWithHint: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                          labelText: 'Content',
-                          hintText: 'Content',
-                          contentPadding: const EdgeInsets.all(12),
+                        const SizedBox(height: 16),
+                        TextField(
+                          keyboardType: TextInputType.multiline,
+                          minLines: 10,
+                          maxLines: null,
+                          controller: _contentController,
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                            labelText: 'Content',
+                            hintText: 'Content',
+                            contentPadding: const EdgeInsets.all(12),
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                }),
-          ],
-        )),
+                      ],
+                    );
+                  }),
+            ],
+          ),
+        ),
       ),
       fab: FloatingActionButton.extended(
         onPressed: () {
@@ -85,7 +88,7 @@ class _ViewEditPageState extends State<ViewEditPage> {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note saved')));
         },
-        label: const Text('Save Note'),
+        label: const Text('Save Note', style: TextStyle(fontSize: 18)),
         icon: const Icon(Icons.save_as),
       ),
     );

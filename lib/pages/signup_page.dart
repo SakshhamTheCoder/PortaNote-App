@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../components/default_scaffold.dart';
-import 'home_page.dart';
-import 'signin_page.dart';
+import 'package:portanote_app/pages/home_page.dart';
+import 'package:portanote_app/pages/signin_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -23,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        const Text('Sign up to PortaNote', textAlign: TextAlign.center, style: TextStyle(fontSize: 48, height: 0.9)),
+        const Text('Sign up to PortaNote', textAlign: TextAlign.center, style: TextStyle(fontSize: 48, height: 1)),
         const SizedBox(height: 32),
         TextField(
           controller: _emailController,
@@ -107,7 +106,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) {
       Navigator.pop(context);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (context) => const HomePage()), (route) => false);
     }).catchError((e) {
       Navigator.pop(context);
       if (e.code == 'weak-password') {
