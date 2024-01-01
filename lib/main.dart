@@ -21,6 +21,10 @@ class PortaNoteApp extends StatelessWidget {
       title: 'PortaNote',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        snackBarTheme: SnackBarThemeData(
+            behavior: SnackBarBehavior.floating,
+            insetPadding: const EdgeInsets.all(16),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
