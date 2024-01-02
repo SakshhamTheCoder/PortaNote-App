@@ -31,11 +31,10 @@
 
 ## About The Project
 
-<p align="center">
-![Landing](images/landing.jpeg)
-![Home](images/home.jpeg)
-![Create](images/create.jpeg)
-![View](images/view.jpeg)
+<p align="middle">
+  <img src="/images/landing.png" width="250" />
+  <img src="/images/home.png" width="250" />
+  <img src="/images/create.png" width="250" />
 </p>
 
 PortaNote is yet another note-taking app made with the help of Firebase as a backend service. This repository implements the frontend for the Android/iOS app using Flutter.
